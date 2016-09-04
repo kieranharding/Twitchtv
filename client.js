@@ -1,9 +1,14 @@
 var $all = {}
 var channelDivs = []
 var channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion",
-  "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"]
+  "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404",
+  "brunofin"]
 
 var apiUrl = "https://api.twitch.tv/kraken/"
+
+function displayNoUser(message) {
+  $all.sc.append('<div class="channel no-user"><span>' + message + '</span></div>')
+}
 
 function displayStream(streamObject) {
   var streamHTML
@@ -47,6 +52,8 @@ function getStreamData(user) {
   $.getJSON(apiUrl + 'streams/' + user + '?callback=?', function(res) {
     if (res.stream) {
       displayStream(res.stream)
+    } else if (res.error) {
+      displayNoUser(res.message)
     } else {
       getChannelData(res._links.channel)
     }

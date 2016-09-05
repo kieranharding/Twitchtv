@@ -1,3 +1,11 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: fantasy;
+}
+
 .user-logo {
   max-width: 3em;
   border-radius: 2px;
@@ -10,13 +18,21 @@
 }
 
 .channel {
+  background-color: #CF7BB9;
   border: 2px solid black;
   position: relative;
+  min-height: 3em;
+}
+
+.no-user {
+  background-color: grey;
 }
 
 .active {
   margin-bottom: 2em;
+  background-color: #008000;
 }
+
 
 .user-container {
   display: inline;
@@ -25,6 +41,7 @@
 
 .user-link {
   display: inline;
+  font-weight: bolder;
 }
 
 .user-name {
@@ -36,10 +53,15 @@
 
 .game-container {
   position: absolute;
-  right: 0px;
+  right: 5px;
   top: 1em;
   display: inline;
   text-align: right;
+}
+
+.game-name {
+  font-style: italic;
+  font-weight: bold;
 }
 
 #stream-container {

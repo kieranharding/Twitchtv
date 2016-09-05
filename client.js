@@ -1,24 +1,26 @@
 var $all = {}
-var channelDivs = []
+var backupLogoURL = "https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png"
+
 var channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion",
   "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404",
-  "brunofin"]
+  "brunofin", "test_channel"]
 
 var apiUrl = "https://api.twitch.tv/kraken/"
 
 function displayNoUser(message) {
-  $all.sc.append('<div class="channel no-user"><span>' + message + '</span></div>')
+  $all.bad.append('<div class="channel no-user"><span>' + message + '</span></div>')
 }
 
 function displayStream(streamObject) {
   var streamHTML
   var isActive = streamObject.hasOwnProperty('channel')
   var channelObject = isActive ? streamObject.channel : streamObject
+  var logoURL = channelObject.logo || backupLogoURL
 
   streamHTML = isActive ? '<div class="channel active">' : '<div class="channel">'
   streamHTML += '<div class="user-container">'
   + '<a class="user-link" href="' + channelObject.url + '">'
-  + '<img class="user-logo" src="' + channelObject.logo + '"/>'
+  + '<img class="user-logo" src="' + logoURL + '"/>'
   + '<div class="user-name">' + channelObject.name + '</div></a>'
   + '</div>'
 
@@ -34,11 +36,10 @@ function displayStream(streamObject) {
   }
 
   streamHTML += '</div>'
-  // channelDivs.push(streamHTML)
   if (isActive) {
-    $all.sc.prepend(streamHTML)
+    $all.active.append(streamHTML)
   } else {
-    $all.sc.append(streamHTML)
+    $all.inactive.append(streamHTML)
   }
 }
 
@@ -61,12 +62,10 @@ function getStreamData(user) {
 }
 
 $(document).ready(function() {
-  $all.sc = $('#stream-container')
+  $all.active = $('#active-streams')
+  $all.inactive = $('#inactive-streams')
+  $all.bad = $('#bad-accounts')
   channels.map(function (user) {
     getStreamData(user)
-  })
-
-  $('body').click(function() {
-    console.log(channelDivs)
   })
 })

@@ -1,13 +1,20 @@
 body {
   font-family: sans-serif;
+  background-image: url("https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png");
+  /*background-image: url("https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png"), linear-gradient(grey, white);*/
 }
 
-h1 {
+h1, h2 {
   font-family: fantasy;
 }
 
+h1 {
+  position: relative;
+  margin-left: 20%;
+}
+
 .user-logo {
-  max-width: 3em;
+  height: 3em;
   border-radius: 2px;
 }
 

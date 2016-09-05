@@ -1,45 +1,51 @@
 var $all = {}
+var inactiveCount = 0
 var backupLogoURL = "https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png"
 
 var channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion",
-  "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "comster404",
+  "storbeck",  "RobotCaleb","habathcx", "noobs2ninjas", "comster404",
   "brunofin", "test_channel"]
 
 var apiUrl = "https://api.twitch.tv/kraken/"
 
 function displayNoUser(message) {
-  $all.bad.append('<div class="channel"><span>' + message + '</span></div>')
+  $all.bad.append('<div>' + message + '</div>')
 }
 
-function displayStream(streamObject) {
-  var streamHTML
+function displayStream(streamObject, isLast) {
   var isActive = streamObject.hasOwnProperty('channel')
   var channelObject = isActive ? streamObject.channel : streamObject
   var logoURL = channelObject.logo || backupLogoURL
 
-  streamHTML = isActive ? '<div class="channel active">' : '<div class="channel">'
-  streamHTML += '<div class="user-container">'
-  + '<a class="user-link" href="' + channelObject.url + '">'
-  + '<img class="user-logo" src="' + logoURL + '"/>'
-  + '<div class="user-name">' + channelObject.name + '</div></a>'
-  + '</div>'
-
-    streamHTML += '<div class="game-container">'
   if (isActive) {
-    streamHTML += '<div class="game-name">' + streamObject.game + '</div>'
-      + '<div class="game-desc">' + channelObject.status + '</div>'
-      + '</div>'
-      + '<img class="game-preview" src="' + streamObject.preview.large + '"/>'
-  } else {
-    streamHTML += '<div class="game-name">Not currently streaming</div>'
-      + '</div>'
-  }
+    var streamHTML = '<div class="row"><div class="one-third column">'
+      + '<a href="' + channelObject.url
+      + '"><img class="u-max-full-width game-preview" src="'
+      + streamObject.preview.medium + '"/>'
+      + '</a></div><div class="two-thirds column">'
+      + '<span class="game-name">' + streamObject.game + '</span>' + ': '
+      + '<span class="game-desc">' + channelObject.status + '</span>'
+      + '<div class="user-link">'
+      + '<a href="' + channelObject.url + '">'
+      + '<span class="user-name">' + channelObject.name + '</span>'
+      + '<img class="user-logo" src="' + logoURL + '"/>'
+      + '</a></div></div></div>'
 
-  streamHTML += '</div>'
-  if (isActive) {
     $all.active.append(streamHTML)
   } else {
-    $all.inactive.append(streamHTML)
+    var streamHTML = '<div class="one-third column user-link">'
+      + '<a href="' + channelObject.url + '">'
+      + '<span class="user-name">' + channelObject.name + '</span>'
+      + '<img class="user-logo" src="' + logoURL + '"/>'
+      + '</a></div>'
+
+    if ( inactiveCount % 3 === 0 ) {
+      streamHTML = '<div class="row">' + streamHTML + '</div>'
+      $all.inactive.append(streamHTML)
+    } else {
+      $all.inactive.find('.row:last-of-type').append(streamHTML)
+    }
+    inactiveCount++
   }
 }
 
@@ -49,10 +55,10 @@ function getChannelData(url) {
   })
 }
 
-function getStreamData(user) {
+function getStreamData(user, idx) {
   $.getJSON(apiUrl + 'streams/' + user + '?callback=?', function(res) {
     if (res.stream) {
-      displayStream(res.stream)
+      displayStream(res.stream, (idx === channels.length - 1))
     } else if (res.error) {
       displayNoUser(res.message)
     } else {
@@ -65,7 +71,8 @@ $(document).ready(function() {
   $all.active = $('#active-streams')
   $all.inactive = $('#inactive-streams')
   $all.bad = $('#bad-accounts')
-  channels.map(function (user) {
-    getStreamData(user)
+  channels.map(function (user, idx) {
+    getStreamData(user, idx)
   })
+
 })

@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf8">
   <title>Twitch.tv Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
+
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" charset="utf-8"></script>
   <!-- <script src="https://use.fontawesome.com/e701f2af9b.js" charset="utf-8"></script> -->
   <script src="client.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="header">
-    <h1>Twitch.tv Streams</h1>
-  </div>
-  <div id="stream-container">
-    <div id="active-streams"><h2>Now Streaming</h2></div>
-    <div id="inactive-streams"><h2>Not Streaming Now</h2></div>
-    <div id="bad-accounts"><h2>Bad Accounts</h2></div>
+
+  <div id="stream-container" class="container">
+    <div id="active-streams">
+      <h3>Now Streaming on Twitch.tv</h3>
+      <!-- <table class="u-full-width">
+        <tbody></tbody>
+      </table> -->
+    </div>
+    <div id="inactive-streams"><h3>Not Streaming Now</h3></div>
+    <div id="bad-accounts"><h3>Bad Accounts</h3></div>
   </div>
 
 </body>

@@ -1,0 +1,65 @@
+body {
+  font-family: sans-serif;
+  background-color: #1a1a1a;
+  color: silver;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+.container {
+  max-width: 720px;
+}
+
+.user-logo {
+  height: 4rem;
+}
+
+.game-preview {
+  border-radius: 30px;
+  border: 7px solid #333333;
+}
+
+.user-name {
+  position: relative;
+  bottom: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+.game-name {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.game-desc {
+  font-size: small;
+  font-weight: normal;
+}
+
+.user-link {
+  background-color: #333333;
+  border-radius: 50px;
+  padding:  1rem 2rem;
+  text-align: center;
+}
+
+#inactive-streams .row {
+  margin-top: 1rem;
+}
+
+#bad-accounts div {
+  margin-top: 1rem;
+}
+
+#active-streams .row {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+#active-streams .user-link {
+  position: relative;
+  display: block;
+  font-style: normal;
+  font-weight: normal;
+  width: 50%;
+}

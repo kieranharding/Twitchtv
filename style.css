@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  background-image: url("https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png");
+  background-color: #faebd7;
+  /*background-image: url("https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png");*/
   /*background-image: url("https://cloud.githubusercontent.com/assets/8678655/18235820/ba7b5fce-72dc-11e6-9445-816ca40f4a8c.png"), linear-gradient(grey, white);*/
 }
 
@@ -25,21 +26,25 @@ h1 {
 }
 
 .channel {
-  background-color: #CF7BB9;
   border: 2px solid black;
   position: relative;
   min-height: 3em;
 }
 
-.no-user {
+#inactive-streams .channel {
+  margin-top: -2px;
+  background-color: #CF7BB9;
+}
+
+#bad-accounts .channel {
+  margin-top: -2px;
   background-color: grey;
 }
 
 .active {
   margin-bottom: 2em;
-  background-color: #008000;
+  background-color: #77dd77;
 }
-
 
 .user-container {
   display: inline;
@@ -63,12 +68,16 @@ h1 {
   right: 5px;
   top: 1em;
   display: inline;
-  text-align: right;
+  text-align: center;
 }
 
 .game-name {
   font-style: italic;
   font-weight: bold;
+}
+
+.game-desc {
+  font-size: small;
 }
 
 #stream-container {

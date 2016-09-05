@@ -8,7 +8,7 @@ var channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion",
 var apiUrl = "https://api.twitch.tv/kraken/"
 
 function displayNoUser(message) {
-  $all.bad.append('<div class="channel no-user"><span>' + message + '</span></div>')
+  $all.bad.append('<div class="channel"><span>' + message + '</span></div>')
 }
 
 function displayStream(streamObject) {

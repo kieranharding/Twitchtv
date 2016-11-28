@@ -6,14 +6,15 @@ var channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion",
   "storbeck",  "RobotCaleb","habathcx", "noobs2ninjas", "comster404",
   "brunofin", "test_channel"]
 
-var apiUrl = "https://api.twitch.tv/kraken/"
+// var apiUrl = "https://api.twitch.tv/kraken/"
+var apiUrl = "https://wind-bow.hyperdev.space/twitch-api/"
 
 function displayNoUser(message) {
   $all.bad.append('<div>' + message + '</div>')
 }
 
 function displayStream(streamObject, isLast) {
-  var isActive = streamObject.hasOwnProperty('channel')
+  var isActive = streamObject && streamObject.hasOwnProperty('channel')
   var channelObject = isActive ? streamObject.channel : streamObject
   var logoURL = channelObject.logo || backupLogoURL
 
@@ -51,6 +52,7 @@ function displayStream(streamObject, isLast) {
 
 function getChannelData(url) {
   $.getJSON(url + '?callback=?', function(res) {
+    console.log(res)
     displayStream(res)
   })
 }
@@ -58,11 +60,14 @@ function getChannelData(url) {
 function getStreamData(user, idx) {
   $.getJSON(apiUrl + 'streams/' + user + '?callback=?', function(res) {
     if (res.stream) {
+      console.log('Streaming:', res)
       displayStream(res.stream, (idx === channels.length - 1))
     } else if (res.error) {
+      console.log('Does Not Exist:', res)
       displayNoUser(res.message)
     } else {
-      getChannelData(res._links.channel)
+      console.log('Not Streaming:', res)
+      getChannelData(apiUrl + 'channels/' + user)
     }
   })
 }

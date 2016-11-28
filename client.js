@@ -28,7 +28,7 @@ function displayStream(streamObject, isLast) {
       + '<span class="game-desc">' + channelObject.status + '</span>'
       + '<div class="user-link">'
       + '<a href="' + channelObject.url + '">'
-      + '<span class="user-name">' + channelObject.name + '</span>'
+      + '<span class="user-name">' + channelObject.display_name + '</span>'
       + '<img class="user-logo" src="' + logoURL + '"/>'
       + '</a></div></div></div>'
 
@@ -36,7 +36,7 @@ function displayStream(streamObject, isLast) {
   } else {
     var streamHTML = '<div class="one-third column user-link">'
       + '<a href="' + channelObject.url + '">'
-      + '<span class="user-name">' + channelObject.name + '</span>'
+      + '<span class="user-name">' + channelObject.display_name + '</span>'
       + '<img class="user-logo" src="' + logoURL + '"/>'
       + '</a></div>'
 
